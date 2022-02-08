@@ -188,6 +188,20 @@ public class ContactActivity extends AppCompatActivity {
 
 
 
+        /// Organization
+
+        contact.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+                .withValue(ContactsContract.Data.MIMETYPE,
+                        ContactsContract.CommonDataKinds.Organization.CONTENT_ITEM_TYPE)
+                .withValue(ContactsContract.CommonDataKinds.Organization.COMPANY, "company")
+                .withValue(ContactsContract.CommonDataKinds.Organization.TYPE, ContactsContract.CommonDataKinds.Organization.TYPE_WORK)
+                .withValue(ContactsContract.CommonDataKinds.Organization.TITLE, "jobTitle")
+                .withValue(ContactsContract.CommonDataKinds.Organization.TYPE, ContactsContract.CommonDataKinds.Organization.TYPE_WORK)
+                .build());
+
+
+
         // add the photo
         contact.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
                 .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
