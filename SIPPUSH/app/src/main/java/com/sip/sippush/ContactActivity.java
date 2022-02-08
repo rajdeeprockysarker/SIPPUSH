@@ -214,6 +214,14 @@ public class ContactActivity extends AppCompatActivity {
                 .build());
 
 
+        ///  Address
+        contact.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                .withValueBackReference(ContactsContract.RawContacts.Data.RAW_CONTACT_ID, 0)
+                .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)
+                .withValue(ContactsContract.CommonDataKinds.StructuredPostal.FORMATTED_ADDRESS, "Circular Road, Mumbai")
+                .withValue(ContactsContract.CommonDataKinds.StructuredPostal.TYPE, ContactsContract.CommonDataKinds.StructuredPostal.TYPE_WORK)
+                .build());
+
 
 
 
