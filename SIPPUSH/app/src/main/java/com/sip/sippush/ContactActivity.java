@@ -1,5 +1,7 @@
 package com.sip.sippush;
 
+import static android.provider.ContactsContract.CommonDataKinds.StructuredPostal.FORMATTED_ADDRESS;
+
 import android.Manifest;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
@@ -202,6 +204,20 @@ public class ContactActivity extends AppCompatActivity {
 
 
 
+
+      /// Website Address
+        contact.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                .withValueBackReference(ContactsContract.RawContacts.Data.RAW_CONTACT_ID, 0)
+                .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Website.CONTENT_ITEM_TYPE)
+                .withValue(ContactsContract.CommonDataKinds.Website.URL, "www.Address.com")
+                .withValue(ContactsContract.CommonDataKinds.Organization.TYPE, ContactsContract.CommonDataKinds.Organization.TYPE_WORK)
+                .build());
+
+
+
+
+
+
         // add the photo
         contact.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
                 .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
@@ -219,7 +235,7 @@ public class ContactActivity extends AppCompatActivity {
     byte[] bitmapByteArray=null;
 
     public void downloadimage(){
-        Glide.with(this).asBitmap().load("https://www.google.es/images/srpr/logo11w.png").into(new CustomTarget<Bitmap>() {
+        Glide.with(this).asBitmap().load("https://mma.prnewswire.com/media/197347/kroger_co_logo.jpg").into(new CustomTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                 bitmapByteArray = toByteArray(resource);
