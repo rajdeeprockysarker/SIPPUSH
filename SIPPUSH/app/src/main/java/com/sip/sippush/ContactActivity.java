@@ -7,12 +7,16 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.net.sip.SipException;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
 import android.net.sip.SipRegistrationListener;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,10 +30,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.downloader.Error;
 import com.downloader.OnCancelListener;
 import com.downloader.OnDownloadListener;
@@ -41,9 +50,11 @@ import com.downloader.PRDownloaderConfig;
 import com.downloader.Progress;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
@@ -61,8 +72,8 @@ public class ContactActivity extends AppCompatActivity {
         btn_contact_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addContact( "Phoneticname","Phoneticname Surname","Phoneticname Middle","123456","123456Givenname","123456789","1111111111","2222222222","3333333333",
-                        "4444444444","home@email.com","work@email.com","sip@123@gmail.com");
+
+                downloadimage();
             }
         });
 
@@ -175,11 +186,48 @@ public class ContactActivity extends AppCompatActivity {
                 .withValue(ContactsContract.CommonDataKinds.SipAddress.TYPE, ContactsContract.CommonDataKinds.SipAddress.TYPE_HOME)
                 .build());
 
+
+
+        // add the photo
+        contact.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+                .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Photo. CONTENT_ITEM_TYPE)
+                .withValue(ContactsContract.CommonDataKinds.Photo.PHOTO, bitmapByteArray)
+                        .build());
+
         try {
             ContentProviderResult[] results = getContentResolver().applyBatch(ContactsContract.AUTHORITY, contact);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    byte[] bitmapByteArray=null;
+
+    public void downloadimage(){
+        Glide.with(this).asBitmap().load("https://www.google.es/images/srpr/logo11w.png").into(new CustomTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                bitmapByteArray = toByteArray(resource);
+                addContact( "Phoneticname","Phoneticname Surname","Phoneticname Middle","123456","123456Givenname","123456789","1111111111","2222222222","3333333333",
+                        "4444444444","home@email.com","work@email.com","sip@123@gmail.com");
+
+            }
+            @Override
+            public void onLoadCleared(@Nullable Drawable placeholder) {
+                bitmapByteArray=null;
+                addContact( "Phoneticname","Phoneticname Surname","Phoneticname Middle","123456","123456Givenname","123456789","1111111111","2222222222","3333333333",
+                        "4444444444","home@email.com","work@email.com","sip@123@gmail.com");
+
+            }
+        });
+    }
+
+
+    public byte[] toByteArray(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
+        return stream.toByteArray();
     }
 
     private void contactPermission() {
