@@ -29,7 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SIPPUSH">
         <activity
-            android:name=".ContactActivity"
+            android:name=".LandingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,6 +37,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ContactActivity"/>
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>

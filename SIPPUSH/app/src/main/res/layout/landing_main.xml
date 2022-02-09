@@ -8,29 +8,29 @@
 
 
     <LinearLayout
-        android:orientation="vertical"
-        android:gravity="top"
-        android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <Button
-            android:drawableLeft="@drawable/ic_arrow"
-            android:backgroundTint="@color/orange"
-            android:textAllCaps="false"
             android:id="@+id/btn_push_sip"
-            android:text="Push SIP Profile to Phone App"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange"
+            android:drawableLeft="@drawable/ic_arrow"
+            android:text="Push SIP Profile to Phone App"
+            android:textAllCaps="false" />
 
         <Button
-            android:drawableLeft="@drawable/ic_arrow"
-            android:backgroundTint="@color/orange"
-            android:textAllCaps="false"
             android:id="@+id/btn_push_contact"
-            android:text="Push Contact to Phone Settings Without opening Phone Interface"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange"
+            android:drawableLeft="@drawable/ic_arrow"
+            android:text="Push Contact to Phone Settings Without opening Phone Interface"
+            android:textAllCaps="false" />
 
     </LinearLayout>
 

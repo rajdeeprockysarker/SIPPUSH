@@ -47,10 +47,29 @@ import java.io.OutputStream;
 public class LandingActivity extends AppCompatActivity {
 
 
+    Button btn_push_sip, btn_push_contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.landing_main);
+
+        btn_push_sip = (Button) findViewById(R.id.btn_push_sip);
+        btn_push_contact = (Button) findViewById(R.id.btn_push_contact);
+
+        btn_push_sip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent inti = new Intent(LandingActivity.this, MainActivity.class);
+                startActivity(inti);
+            }
+        });
+        btn_push_contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent inti = new Intent(LandingActivity.this, ContactActivity.class);
+                startActivity(inti);
+            }
+        });
     }
 }
