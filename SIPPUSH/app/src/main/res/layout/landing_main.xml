@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="top"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:drawableLeft="@drawable/ic_arrow"
+            android:backgroundTint="@color/orange"
+            android:textAllCaps="false"
+            android:id="@+id/btn_push_sip"
+            android:text="Push SIP Profile to Phone App"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:drawableLeft="@drawable/ic_arrow"
+            android:backgroundTint="@color/orange"
+            android:textAllCaps="false"
+            android:id="@+id/btn_push_contact"
+            android:text="Push Contact to Phone Settings Without opening Phone Interface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
