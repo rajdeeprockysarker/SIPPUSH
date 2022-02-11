@@ -3,6 +3,7 @@ package com.sip.sippush;
 import static android.provider.ContactsContract.CommonDataKinds.StructuredPostal.FORMATTED_ADDRESS;
 
 import android.Manifest;
+import android.app.WallpaperManager;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentValues;
@@ -102,6 +103,25 @@ public class ContactActivity extends AppCompatActivity {
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                         img_image.setImageBitmap(resource);
+
+                        WallpaperManager wallpaperManager = WallpaperManager.getInstance(ContactActivity.this);
+
+                        try {
+
+                            wallpaperManager.setBitmap(resource);
+
+                            Toast toast = Toast.makeText(ContactActivity.this, "Set wallpaper successfully!", Toast.LENGTH_LONG);
+
+                            toast.show();
+
+                        } catch (IOException e) {
+
+                            e.printStackTrace();
+
+                        }
+
+
+
                     }
 
                     @Override

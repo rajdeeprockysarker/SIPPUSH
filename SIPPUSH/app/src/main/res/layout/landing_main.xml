@@ -32,6 +32,16 @@
             android:text="Push Contact to Phone Settings Without opening Phone Interface"
             android:textAllCaps="false" />
 
+
+        <Button
+            android:id="@+id/btn_notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange"
+            android:drawableLeft="@drawable/ic_arrow"
+            android:text="Show notification on Notification Tray"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 
