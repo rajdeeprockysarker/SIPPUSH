@@ -56,7 +56,7 @@ import java.io.OutputStream;
 public class LandingActivity extends AppCompatActivity {
 
 
-    Button btn_push_sip, btn_push_contact,btn_notification;
+    Button btn_push_sip, btn_push_contact,btn_notification,btn_ringtone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +66,7 @@ public class LandingActivity extends AppCompatActivity {
         btn_push_sip = (Button) findViewById(R.id.btn_push_sip);
         btn_push_contact = (Button) findViewById(R.id.btn_push_contact);
         btn_notification = (Button) findViewById(R.id.btn_notification);
+        btn_ringtone = (Button) findViewById(R.id.btn_ringtone);
 
         btn_push_sip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +92,17 @@ public class LandingActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 showNotification();
+
+            }
+        });
+
+        btn_ringtone.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View view) {
+
+                Intent inti = new Intent(LandingActivity.this, RingtoneActivity.class);
+                startActivity(inti);
 
             }
         });

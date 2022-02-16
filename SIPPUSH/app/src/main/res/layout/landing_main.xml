@@ -42,6 +42,16 @@
             android:text="Show notification on Notification Tray"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/btn_ringtone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange"
+            android:drawableLeft="@drawable/ic_arrow"
+            android:text="Set Ringtone"
+            android:textAllCaps="false" />
+
+
     </LinearLayout>
 
 
